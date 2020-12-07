@@ -10,6 +10,28 @@ import TaskCounter from './task-counter';
 
 
 export default class ToDo extends Component {
+
+
+  componentDidMount() {
+    fetch("https://quiz-app-mkj.herokuapp.com")
+    .then(response => response.json())
+    .then(data => {
+        this.setState({
+            data: data,
+            isLoading: false
+
+        })
+    })
+    .catch(error => {
+        console.log(error)
+        this.setState({
+            error: true,
+            isLoading: false
+        })
+
+    })
+}
+
   render() {
     return (
       <div className='todo'>
